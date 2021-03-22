@@ -8,6 +8,6 @@ const phones = [
 	{ name: "iphone B", priceHT: 200 },
 ];
 
-const pricesTTC = phones.map(/* ... */);
+const pricesTTC = phones.map((phone) => computeTTC(phone.priceHT));
 
 console.log(pricesTTC); // attendu : [1080, 840, 240]
