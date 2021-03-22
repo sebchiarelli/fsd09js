@@ -1,7 +1,7 @@
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 // retourne la première valeur du tableau en la supprimant du tableau
-// numbers.shift();
+numbers.shift();
 
 function accumulator(numbers, acc = 0) {
 	// retourner la première valeur du tableau, la supprimer du tableau, l'additionner à l'accumulateur
