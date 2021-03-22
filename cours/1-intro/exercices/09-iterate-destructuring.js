@@ -11,10 +11,25 @@ const students = [
 	{
 		name: "Bernard",
 		family: {
-			mother: "Particia",
+			mother: "Patricia",
 			father: "Cécile",
 			sister: "Annie",
 		},
 		age: 55,
 	},
 ];
+
+for (const student of students) {
+	const {
+		name,
+		family: { sister },
+	} = student;
+	console.log(name, sister);
+}
+
+for (const {
+	name,
+	family: { sister },
+} of students) {
+	console.log(name, sister);
+}
