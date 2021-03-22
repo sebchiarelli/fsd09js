@@ -4,5 +4,5 @@ function sumTTCPrices(prixHT1, prixHT2, prixHT3, TVA = 20) {
 
 const pricesHT = [100, 200, 55];
 
-//console.log(sumTTCPrices()); // calculer la somme avec une TVA par défaut de 20%, res 426
-//console.log(); // avec une TVA de 5.5%, res 374,525
+console.log(sumTTCPrices(...pricesHT)); // calculer la somme avec une TVA par défaut de 20%, res 426
+console.log(sumTTCPrices(...pricesHT, 5.5)); // avec une TVA de 5.5%, res 374,525
