@@ -1,5 +1,9 @@
 let numbers = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+const sum = numbers.reduce((acc, currentValue) => acc + currentValue);
+console.log(sum);
+
+/*
 // retourne la première valeur du tableau en la supprimant du tableau
 // numbers.shift();
 
@@ -18,3 +22,4 @@ function accumulator(numbers, acc = 0) {
 }
 
 console.log(accumulator(numbers)); // doit retourner 55
+*/
