@@ -16,9 +16,13 @@ const firstStudentDeepCopy1 = { ...students[0], notes: [...students[0].notes] };
 const firstStudentDeepCopy2 = JSON.parse(JSON.stringify(students[0]));
 // 3: utiliser des librairies qui contiennent des fonctions de deep copy (ex: lodash)
 
+// modifie l'objet de départ, donc également sa copie de référence
 students[0].name = "Jean Michel";
+// modifie l'objet de départ, sa copie de référence... mais aussi sa shallow copy puisqu'on manipule le tableau imbriqué !
 students[0].notes.push(20);
 
 console.log(students[0]);
 console.log(firstStudentRef);
 console.log(firstStudentShallow);
+console.log(firstStudentDeepCopy1);
+console.log(firstStudentDeepCopy2);
