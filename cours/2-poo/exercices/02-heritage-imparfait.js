@@ -21,13 +21,13 @@ class Square extends Rectangle {
 	constructor(size) {
 		super(size, size);
 	}
-  set w(w) {
+	set w(w) {
 		this._w = w;
-    this._h = w;
+		this._h = w;
 	}
 	set h(h) {
 		this._h = h;
-    this._w = h;
+		this._w = h;
 	}
 }
 
@@ -38,3 +38,4 @@ square1.w = 40;
    égales pour les instances de Square... il aurait été préférable de ne pas mettre en place
    d'héritage ici.
    C'est un exemple d'école de violation du principe de Liskov : https://fr.wikipedia.org/wiki/Principe_de_substitution_de_Liskov
+*/
