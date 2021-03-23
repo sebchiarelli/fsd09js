@@ -24,9 +24,70 @@ for (const person of populations) {
 
 console.log(populations);
 
-// [TODO] Récupérer toutes les longueurs de prénom dispo dans le tableau
+// Récupérer toutes les longueurs de prénom dispo dans le tableau
 // Algo : générer un tableau des longueurs [3, 4, 4, 4, 4, 5, 5, 5, 5, 6, 6, 6, 9]
 // se débarrasser des doublons en l'envoyant au constructeur de Set
+const lenNames = new Set(populations.map((person) => person.lenName));
+console.log(lenNames);
+
+// Algo pour tableau de tableaux, non optimisé
+/*
+const groupedPopulation = [];
+for (const lenName of lenNames) {
+	const filteredPersons = [];
+	for (const person of populations) {
+		if (person.lenName === lenName) {
+			filteredPersons.push(person);
+		}
+	}
+	groupedPopulation.push(filteredPersons);
+}
+console.log(groupedPopulation);
+*/
+
+// Même algo, optimisé avec filter (à mon avis version optimale)
+const groupedPopulation = [];
+for (const lenName of lenNames) {
+	const filteredPersons = populations.filter(
+		(person) => person.lenName === lenName
+	);
+	groupedPopulation.push(filteredPersons);
+}
+console.log(groupedPopulation);
+
+// Même algo avec map (hyper succint mais moins lisible !)
+/*
+const groupedPopulation = [...lenNames].map((lenName) =>
+	populations.filter((person) => person.lenName === lenName)
+);
+console.log(groupedPopulation);
+*/
+
+// Algo pour le tableau de tableaux clé/valeur
+const groupedPopulationV2 = [];
+for (const lenName of lenNames) {
+	const filteredPersons = populations.filter(
+		(person) => person.lenName === lenName
+	);
+	groupedPopulationV2.push([lenName, filteredPersons]);
+}
+console.log(groupedPopulationV2);
+
+// Algo pour une map
+
+// v1 : on peut passer au constructeur de Map un tableau de tableaux clé/valeur
+// const mapPopulation = new Map(groupedPopulationV2);
+// console.log(mapPopulation);
+
+// v2 'from scratch'
+const mapPopulation = new Map();
+for (const lenName of lenNames) {
+	const filteredPersons = populations.filter(
+		(person) => person.lenName === lenName
+	);
+	mapPopulation.set(lenName, filteredPersons);
+}
+console.log(mapPopulation);
 
 /* STRUCTURES DE DONNEES POSSIBLES */
 
