@@ -1,10 +1,10 @@
 class Parser {
 	constructor(separator) {
 		this._separator = separator;
-		this._str = null;
+		this._bits = [];
 	}
 	parse(phrase) {
-		const bits = phrase
+		this._bits = phrase
 			.split(this._separator)
 			.map((s) => s.trim())
 			//.filter((s) => !isNaN(Number(s)));
@@ -12,10 +12,12 @@ class Parser {
 			// \d+ : 1 ou plusieurs chiffres
 			// les marqueurs ^ et $ de début et fin de chaine pour indiquer que la chaine doit INTEGRALEMENT être constituée de chiffres
 			.filter((s) => /^\d+$/.test(s));
-		this._str = bits.join(" ");
 	}
 	get str() {
-		return this._str;
+		return this._bits.join(" ");
+	}
+	get bits() {
+		return this._bits;
 	}
 }
 
