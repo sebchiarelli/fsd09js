@@ -13,3 +13,7 @@ p.then((res) => {
 	console.log(res); // 3
 	console.log(p); // promesse à l'état resolved
 }).catch((err) => console.log(`ERREUR: ${err.message}`));
+
+Promise.all([checkNumber(3), checkNumber(4), checkNumber(5)])
+	.then((res) => console.log(res))
+	.catch((err) => console.log(`ERREUR: ${err.message}`));
