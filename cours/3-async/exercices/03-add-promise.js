@@ -1,7 +1,10 @@
 const checkNumber = (number) => {
 	return new Promise((resolve, reject) => {
 		setTimeout(() => {
-			if (isNaN(number)) reject(new Error(`${number} n'est pas un nombre`));
+			if (isNaN(number)) {
+				reject(new Error(`${number} n'est pas un nombre`));
+				return;
+			}
 			resolve(number);
 		}, 1000);
 	});
