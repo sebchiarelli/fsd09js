@@ -13,7 +13,7 @@ checkNumber(1)
 	// 	return checkNumber(nbA + 2);
 	// })
 	.then((nbA) => checkNumber(nbA + 2))
-	.then((nbB) => checkNumber(nbB + "coucou"))
+	.then((nbB) => checkNumber(nbB + 3))
 	.then((nbC) => checkNumber(nbC + 4))
 	.then((nbD) => checkNumber(nbD + 5))
 	.then((nbE) => console.log(nbE))
