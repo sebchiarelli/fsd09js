@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Exemple events</title>
+		<style>
+			.square {
+				width: 100px;
+				height: 100px;
+				background-color: grey;
+				margin-bottom: 20px;
+				border: 1px solid black;
+			}
+			.red {
+				background-color: red;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="box" class="square"></div>
+		<button id="btn">Click me</button>
+	</body>
+	<!-- D'une manière ou d'une autre s'assurer que le DOM soit chargé avant de déclencher un script qui
+       interagit avec le DOM.
+       Soit utiliser l'attribut defer
+       Soit déclencher le code principal quand l'evt DOMContentLoaded a lieu -->
+	<script src="main.js" defer></script>
+</html>
