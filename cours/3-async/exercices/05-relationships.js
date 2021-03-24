@@ -19,12 +19,20 @@ Promise.all([
 	// double destructuring : la valeur de résolution est un tableau à 2 éléments (les valeurs de résolution de chaque promesse de départ)
 	// ces 2 éléments sont eux-mêmes des objets dans lesquels une seule propriété nous intéresse (dragons dans le 1er, relationships dans le 2nd)
 	.then(([{ dragons }, { relationships }]) => {
-		console.log(dragons);
-		console.log(relationships);
+		const namedRelationships = [];
+		for (const rel of relationships) {
+			console.log(rel);
+			const dragonName = dragons.find((d) => d.id === rel.id).name;
+			const friendNames = [];
+			for (const friendId of rel.relation) {
+				const friendName = dragons.find((d) => d.id === friendId).name;
+				friendNames.push(friendName);
+			}
+			namedRelationships.push({ name: dragonName, friendNames: friendNames });
+		}
+		console.log(namedRelationships);
 	})
 	.catch((err) => console.log(`ERREUR: ${err.message}`));
-
-// Après résolution, créer une structure de données contenant des relations nommées
 
 /* Exemple de structure souhaitée */
 /*
