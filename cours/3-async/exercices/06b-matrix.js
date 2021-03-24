@@ -12,28 +12,19 @@ const getJsonFromFile = (path) =>
 	});
 
 getJsonFromFile("./data/matrix.json").then(({ matrix }) => {
-	console.log(matrix);
-	const newMatrix = [];
-	// Pour chaque sous-tableau
-	for (const line of matrix) {
+	// La procédure à appliquer pour chaque ligne n'est pas triviale
+	// on n'a pas spécialement intérêt à remplacer for...of par la méthode map de Array
+	// ...mais on peut le faire
+
+	const newMatrix = matrix.map((line) => {
 		// Filtrer les valeurs numériques, s'en servir pour calculer leur moyenne
 		const nums = line.filter((val) => val !== "None");
 		const avg =
 			Math.round((100 * nums.reduce((acc, curr) => acc + curr)) / nums.length) /
 			100;
 		// Générer une version "transformée" du sous-tab où les "None" sont remplacés par la moyenne
-		const newLine = line.map((val) => (val === "None" ? avg : val));
-		/*const newLine = [];
-    for (const val of line) {
-      if (val === 'None') {
-        newLine.push(avg);
-      }
-      else {
-        newLine.push(val);
-      }
-    }*/
-		// Ajouter ce sous-tab transformé dans la nouvelle matrice
-		newMatrix.push(newLine);
-	}
+		return line.map((val) => (val === "None" ? avg : val));
+	});
+
 	console.log(newMatrix);
 });
