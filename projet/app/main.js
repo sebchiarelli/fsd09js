@@ -1,5 +1,6 @@
 //import Router from "vanilla-router";
 
+import HomeController from "../controllers/HomeController.js";
 import app /*, { API_KEY as apiKey, API_KEY_2 }*/ from "./app.js";
 import config from "./config.js";
 
@@ -18,6 +19,10 @@ function initializeRouter() {
 
 	app.mvc.router.add("home", function () {
 		console.log("Home page");
+		const controllerInstance = new HomeController();
+		// Récupérer l'URL de la vue partielle, puis son contenu (avec un fetch)
+		// Mettre à jour le main avec ce contenu
+		// Déclencher la méthode executeAfterDomUpdate du ctrl
 	});
 
 	app.mvc.router.add("about", function () {
