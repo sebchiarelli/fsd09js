@@ -23,15 +23,7 @@ getJsonFromFile("./data/matrix.json").then(({ matrix }) => {
 			100;
 		// Générer une version "transformée" du sous-tab où les "None" sont remplacés par la moyenne
 		const newLine = line.map((val) => (val === "None" ? avg : val));
-		/*const newLine = [];
-    for (const val of line) {
-      if (val === 'None') {
-        newLine.push(avg);
-      }
-      else {
-        newLine.push(val);
-      }
-    }*/
+
 		// Ajouter ce sous-tab transformé dans la nouvelle matrice
 		newMatrix.push(newLine);
 	}
