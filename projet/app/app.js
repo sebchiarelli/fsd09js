@@ -9,6 +9,17 @@ let app = {
 	// ----------------------------------------------------------------------------------------------------------------
 	mvc: {
 		router: null,
+		dispatchRoute: (controllerInstance) => {
+			// Récupérer l'URL de la vue partielle, puis son contenu
+			fetch(controllerInstance.viewPath)
+				.then((res) => res.text())
+				.then((htmlString) => {
+					// Mettre à jour l'élément main de la page avec ce contenu
+					document.querySelector("main").innerHTML = htmlString;
+					// Déclencher la méthode executeAfterDomUpdate du ctrl
+					controllerInstance.executeAfterDomUpdate();
+				});
+		},
 	},
 };
 

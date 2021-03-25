@@ -1,6 +1,10 @@
 //import Router from "vanilla-router";
 
 import HomeController from "../controllers/HomeController.js";
+import SearchController from "../controllers/SearchController.js";
+import LoginController from "../controllers/LoginController.js";
+import AboutController from "../controllers/AboutController.js";
+
 import app /*, { API_KEY as apiKey, API_KEY_2 }*/ from "./app.js";
 import config from "./config.js";
 
@@ -18,23 +22,19 @@ function initializeRouter() {
 	});
 
 	app.mvc.router.add("home", function () {
-		console.log("Home page");
-		const controllerInstance = new HomeController();
-		// Récupérer l'URL de la vue partielle, puis son contenu (avec un fetch)
-		// Mettre à jour le main avec ce contenu
-		// Déclencher la méthode executeAfterDomUpdate du ctrl
+		app.mvc.dispatchRoute(new HomeController());
 	});
 
 	app.mvc.router.add("about", function () {
-		console.log("About Page");
+		app.mvc.dispatchRoute(new AboutController());
 	});
 
 	app.mvc.router.add("search", function () {
-		console.log("Search Page");
+		app.mvc.dispatchRoute(new SearchController());
 	});
 
 	app.mvc.router.add("login", function () {
-		console.log("Login Page");
+		app.mvc.dispatchRoute(new LoginController());
 	});
 
 	// app.mvc.router.add("hello/(:any)", function (name) {
