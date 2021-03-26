@@ -8,6 +8,8 @@ import AboutController from "../controllers/AboutController.js";
 import app /*, { API_KEY as apiKey, API_KEY_2 }*/ from "./app.js";
 import config from "./config.js";
 
+import "../static/css/main.css";
+
 // --------------------------------------------------------------------------------------------------------------------
 // INITIALISATION DE L'APPLICATION
 // --------------------------------------------------------------------------------------------------------------------
