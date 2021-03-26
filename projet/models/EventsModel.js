@@ -1,5 +1,6 @@
+const API_ENDPOINT = "https://opendata.paris.fr/api/records/1.0/search/";
+
 class EventsModel {
-	static API_ENDPOINT = "https://opendata.paris.fr/api/records/1.0/search/";
 	constructor(rows = 12) {
 		this._queryParameters = {
 			dataset: "que-faire-a-paris-",
@@ -39,9 +40,7 @@ class EventsModel {
 		// construit la requete
 		const queryString = this.buildQuery(q, date_start, sort);
 		// envoie la requête et renvoie les résultats
-		return fetch(`${EventsModel.API_ENDPOINT}?${queryString}`).then((res) =>
-			res.json()
-		);
+		return fetch(`${API_ENDPOINT}?${queryString}`).then((res) => res.json());
 	}
 }
 

@@ -22,7 +22,7 @@ class SearchController {
 		 Seule différence fonctionnelle entre une fonction classique et une fonction fléchée : la fonction fléchée ne
 		 modifie jamais la valeur de this.
 	*/
-	onSubmitForm = (e) => {
+	onSubmitForm(e) {
 		e.preventDefault();
 		// récupérer les valeurs saisies dans le formulaire
 		const q = document.querySelector("#q").value;
@@ -49,7 +49,7 @@ class SearchController {
 			<ul class="events-list row">${htmlRecords.join("")}</ul>
 			`;
 			});
-	};
+	}
 
 	executeAfterDomUpdate() {
 		// Remplir la liste déroulante des années
@@ -57,7 +57,7 @@ class SearchController {
 		// Surveiller le submit du formulaire
 		document
 			.querySelector("#searchForm")
-			.addEventListener("submit", this.onSubmitForm);
+			.addEventListener("submit", this.onSubmitForm.bind(this));
 	}
 }
 
