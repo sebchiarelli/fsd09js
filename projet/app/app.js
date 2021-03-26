@@ -5,7 +5,62 @@ let app = {
 	// ----------------------------------------------------------------------------------------------------------------
 	// MANIPULATION DU DOM DE L'APPLICATION
 	// ----------------------------------------------------------------------------------------------------------------
-	dom: {},
+	dom: {
+		refreshMainMenu: (isLoggedIn = false) => {
+			let links = [];
+			if (isLoggedIn) {
+				links = [
+					{
+						url: "#home",
+						title: "Accueil",
+					},
+					{
+						url: "#search",
+						title: "Recherche",
+					},
+					{
+						url: "#about",
+						title: "A propos",
+					},
+					{
+						url: "#logout",
+						title: "Déconnexion",
+						liClasses: "flex-grow-1",
+						aClasses: "text-lg-end",
+					},
+				];
+			} else {
+				links = [
+					{
+						url: "#home",
+						title: "Accueil",
+					},
+					{
+						url: "#about",
+						title: "A propos",
+					},
+					{
+						url: "#login",
+						title: "Connexion",
+						liClasses: "flex-grow-1",
+						aClasses: "text-lg-end",
+					},
+				];
+			}
+			document.querySelector("#mainMenu").innerHTML = links
+				.map(
+					({
+						url,
+						title,
+						liClasses = "",
+						aClasses = "",
+					}) => `<li class="nav-item ${liClasses}">
+				<a class="nav-link ${aClasses}" href="${url}">${title}</a>
+			</li>`
+				)
+				.join("");
+		},
+	},
 
 	// ----------------------------------------------------------------------------------------------------------------
 	// AUTHENTIFICATION
@@ -18,6 +73,8 @@ let app = {
 				.signInWithPopup(provider)
 				.then((result) => {
 					console.log(result);
+					app.dom.refreshMainMenu(true);
+					//app.mvc.router.navigateTo("home");
 				})
 				.catch((error) => {
 					console.error(`ERREUR: ${error.message}`);
