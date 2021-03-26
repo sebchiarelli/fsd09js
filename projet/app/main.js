@@ -1,4 +1,5 @@
 import Router from "vanilla-router";
+import firebase from "firebase/app";
 
 import HomeController from "../controllers/HomeController.js";
 import SearchController from "../controllers/SearchController.js";
@@ -59,5 +60,10 @@ function initializeRouter() {
 document.addEventListener("DOMContentLoaded", function () {
 	// Initialisation du routeur.
 	initializeRouter();
+
+	//Test ES6
 	//sayHello({ firstName: "John", lastName: "Doe" });
+
+	// Initialize Firebase
+	firebase.initializeApp(config.firebase);
 });

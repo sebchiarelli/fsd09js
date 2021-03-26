@@ -1,8 +1,29 @@
+import firebase from "firebase/app";
+import "firebase/auth";
+
 let app = {
 	// ----------------------------------------------------------------------------------------------------------------
 	// MANIPULATION DU DOM DE L'APPLICATION
 	// ----------------------------------------------------------------------------------------------------------------
 	dom: {},
+
+	// ----------------------------------------------------------------------------------------------------------------
+	// AUTHENTIFICATION
+	// ----------------------------------------------------------------------------------------------------------------
+	auth: {
+		loginWithGithub: () => {
+			const provider = new firebase.auth.GithubAuthProvider();
+			firebase
+				.auth()
+				.signInWithPopup(provider)
+				.then((result) => {
+					console.log(result);
+				})
+				.catch((error) => {
+					console.error(`ERREUR: ${error.message}`);
+				});
+		},
+	},
 
 	// ----------------------------------------------------------------------------------------------------------------
 	// ARCHITECTURE MVC DE L'APPLICATION

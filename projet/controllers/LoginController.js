@@ -1,10 +1,14 @@
+import app from "../app/app.js";
+
 class LoginController {
 	constructor() {
 		this.viewPath = "views/login.html";
 	}
 
 	executeAfterDomUpdate() {
-		console.log("Login OK");
+		document
+			.querySelector("#githubLogin")
+			.addEventListener("click", app.auth.loginWithGithub);
 	}
 }
 
