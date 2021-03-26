@@ -16,7 +16,17 @@ class EventsModel {
 	buildQuery(q = "", date_start = "", sort = "date_start") {
 		console.log(q, date_start, sort);
 		// completer la propriété queryParameters
+		this._queryParameters.q = q.trim();
+		this._queryParameters.sort = sort;
+		if (date_start !== "") {
+			// facet=date_start&refine.date_start=2020
+			this._queryParameters.facet = "date_start";
+			this._queryParameters["refine.date_start"] = date_start;
+		}
 		// la traduire sous forme de chaine de requête et renvoyer cette chaine de requête
+		return Object.entries(this._queryParameters)
+			.map(([key, value]) => `${key}=${value}`)
+			.join("&");
 	}
 	/**
 	 * Envoyer une requête
@@ -25,7 +35,6 @@ class EventsModel {
 	 * @param {string} sort ordre de tri
 	 */
 	getEvents(q = "", date_start = "", sort = "date_start") {
-		console.log(q, date_start, sort);
 		// construit la requete
 		const queryString = this.buildQuery(q, date_start, sort);
 		// envoie la requête
@@ -36,10 +45,5 @@ class EventsModel {
 export default EventsModel;
 
 /*
-https://opendata.paris.fr/api/records/1.0/search/?
-dataset=que-faire-a-paris-&
-q=jazz&
-rows=12&
-sort=-date_start&
-facet=date_start&refine.date_start=2020
+https://opendata.paris.fr/api/records/1.0/search/?dataset=que-faire-a-paris-&q=jazz&rows=12&sort=-date_start&facet=date_start&refine.date_start=2020
 */
