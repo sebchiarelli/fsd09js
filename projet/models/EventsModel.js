@@ -33,12 +33,15 @@ class EventsModel {
 	 * @param {string} q terme de recherche
 	 * @param {string} date_start année de recherche (peut valoir "")
 	 * @param {string} sort ordre de tri
+	 * @returns {Promise} promesse qui sera résolue par les données réceptionnées
 	 */
 	getEvents(q = "", date_start = "", sort = "date_start") {
 		// construit la requete
 		const queryString = this.buildQuery(q, date_start, sort);
-		// envoie la requête
-		// récupère les résultats
+		// envoie la requête et renvoie les résultats
+		return fetch(`${EventsModel.API_ENDPOINT}?${queryString}`).then((res) =>
+			res.json()
+		);
 	}
 }
 

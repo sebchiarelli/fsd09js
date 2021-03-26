@@ -30,7 +30,25 @@ class SearchController {
 		const sort = document.querySelector("#sort").value;
 		// envoyer la requête
 		const eventsModel = new EventsModel();
-		eventsModel.getEvents(q, date_start, sort);
+		eventsModel
+			.getEvents(q, date_start, sort)
+			.then(({ nhits, parameters, records }) => {
+				const htmlRecords = records.map(
+					({
+						fields: { title, date_description, cover_url, cover_alt },
+					}) => `<li class="col-12 col-sm-6 col-md-4 col-lg-3 text-center">
+					<img class="img-fluid" src="${cover_url}" alt="${cover_alt}" />
+					<h6>${title}</h6>
+					<p>${date_description}</p>
+				</li>`
+				);
+				document.querySelector("#searchResults").innerHTML = `
+			<h4 class="text-center my-3">${
+				records.length
+			} résultats sur ${nhits} au total</h4>
+			<ul class="events-list row">${htmlRecords.join("")}</ul>
+			`;
+			});
 	};
 
 	executeAfterDomUpdate() {
