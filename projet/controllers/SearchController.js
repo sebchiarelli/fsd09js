@@ -1,3 +1,5 @@
+import EventsModel from "../models/EventsModel.js";
+
 class SearchController {
 	constructor() {
 		this.viewPath = "views/search.html";
@@ -6,7 +8,7 @@ class SearchController {
 	fillYears() {
 		// Generer les balises option en fonction de l'année courante
 		const currentYear = new Date().getFullYear();
-		const options = ["<option>-- Choisir --</option>"];
+		const options = ['<option value="">-- Choisir --</option>'];
 		for (let y = currentYear + 1; y >= currentYear - 2; y--) {
 			options.push(`<option value="${y}">${y}</option>`);
 		}
@@ -26,7 +28,9 @@ class SearchController {
 		const q = document.querySelector("#q").value;
 		const date_start = document.querySelector("#date_start").value;
 		const sort = document.querySelector("#sort").value;
-		console.log(q, date_start, sort);
+		// envoyer la requête
+		const eventsModel = new EventsModel();
+		eventsModel.getEvents(q, date_start, sort);
 	};
 
 	executeAfterDomUpdate() {
