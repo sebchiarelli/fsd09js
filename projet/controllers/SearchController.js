@@ -30,6 +30,7 @@ class SearchController {
 		const sort = document.querySelector("#sort").value;
 		// envoyer la requête
 		const eventsModel = new EventsModel();
+		console.log(eventsModel);
 		eventsModel
 			.getEvents(q, date_start, sort)
 			.then(({ nhits, parameters, records }) => {
