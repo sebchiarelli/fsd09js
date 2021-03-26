@@ -15,7 +15,7 @@ import "../static/css/main.css";
 // INITIALISATION DE L'APPLICATION
 // --------------------------------------------------------------------------------------------------------------------
 
-function initializeRouter() {
+function initializeRouter(isLoggedIn = false) {
 	// Instancier ici le Vanilla Router dans l'objet "app.mvc.router"
 	app.mvc.router = new Router({
 		mode: "hash",
@@ -32,13 +32,16 @@ function initializeRouter() {
 		app.mvc.dispatchRoute(new AboutController());
 	});
 
-	app.mvc.router.add("search", function () {
-		app.mvc.dispatchRoute(new SearchController());
-	});
-
-	app.mvc.router.add("login", function () {
-		app.mvc.dispatchRoute(new LoginController());
-	});
+	if (isLoggedIn) {
+		app.mvc.router.add("search", function () {
+			app.mvc.dispatchRoute(new SearchController());
+		});
+		app.mvc.router.add("logout", app.auth.logout);
+	} else {
+		app.mvc.router.add("login", function () {
+			app.mvc.dispatchRoute(new LoginController());
+		});
+	}
 
 	// app.mvc.router.add("hello/(:any)", function (name) {
 	// 	console.log("Hello, " + name);
@@ -58,12 +61,24 @@ function initializeRouter() {
 // };
 
 document.addEventListener("DOMContentLoaded", function () {
-	// Initialisation du routeur.
-	initializeRouter();
-
 	//Test ES6
 	//sayHello({ firstName: "John", lastName: "Doe" });
 
 	// Initialize Firebase
 	firebase.initializeApp(config.firebase);
+
+	// Surveiller les chgts d'état de connexion
+	firebase.auth().onAuthStateChanged(function (user) {
+		if (user) {
+			// User is signed in.
+			app.dom.refreshMainMenu(true);
+			// Initialisation du routeur.
+			initializeRouter(true);
+		} else {
+			// No user is signed in.
+			app.dom.refreshMainMenu(false);
+			// Initialisation du routeur.
+			initializeRouter();
+		}
+	});
 });

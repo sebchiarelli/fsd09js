@@ -73,8 +73,18 @@ let app = {
 				.signInWithPopup(provider)
 				.then((result) => {
 					console.log(result);
-					app.dom.refreshMainMenu(true);
-					//app.mvc.router.navigateTo("home");
+					app.mvc.router.navigateTo("home");
+				})
+				.catch((error) => {
+					console.error(`ERREUR: ${error.message}`);
+				});
+		},
+		logout: () => {
+			firebase
+				.auth()
+				.signOut()
+				.then(() => {
+					app.mvc.router.navigateTo("home");
 				})
 				.catch((error) => {
 					console.error(`ERREUR: ${error.message}`);
