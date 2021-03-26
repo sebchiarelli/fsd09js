@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const CopyPlugin = require("copy-webpack-plugin");
 
-module.exports = (env) => {
+module.exports = (env, argv) => {
 	const config = {
 		entry: "./app/main.js",
 		output: {
@@ -41,8 +41,8 @@ module.exports = (env) => {
 			],
 		},
 	};
-	// si on n'est pas en prod, activer la source map
-	if (!env.production) {
+	// si on est en mode development, activer la source map
+	if (argv.mode === "development") {
 		config.devtool = "source-map";
 	}
 	return config;
