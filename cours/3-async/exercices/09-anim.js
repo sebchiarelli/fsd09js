@@ -6,19 +6,25 @@
 
 const anim = () =>
 	new Promise((resolve) => {
-		setTimeout(() => {
-			const letters = "ABCDEFGHIJKLMNOPQRSTUVWX";
-			const digit = Math.ceil(Math.random() * 9);
-			const letter = letters[Math.floor(Math.random() * 24)];
-			resolve(`${digit}${letter}`);
-		}, 500);
+		//setTimeout(() => {
+		const letters = "ABCDEFGHIJKLMNOPQRSTUVWX";
+		const digit = Math.ceil(Math.random() * 9);
+		const letter = letters[Math.floor(Math.random() * 24)];
+		resolve(`${digit}${letter}`);
+		//}, 500);
 	});
 
 /**
  * Fonction asynchrone qui génère une secret key en appelant 10 fois de suite anim et en concaténant les résultats
  * @returns la promesse de la clé secrete
  */
-const generateSecretKey = async () => {};
+const generateSecretKey = async () => {
+	let secretKey = "";
+	for (let i = 0; i < 10; i++) {
+		secretKey += await anim();
+	}
+	return secretKey;
+};
 
 // CP: générer la secret key
-generateSecretKey();
+generateSecretKey().then((res) => console.log(res));

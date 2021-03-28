@@ -20,7 +20,6 @@
 			rel="stylesheet"
 			href="https://fonts.googleapis.com/css?family=Poiret+One"
 		/>
-		<link rel="stylesheet" href="static/css/main.css" />
 
 		<script
 			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js"
@@ -44,20 +43,7 @@
 				</button>
 
 				<div class="collapse navbar-collapse" id="main-menu">
-					<ul class="navbar-nav w-100">
-						<li class="nav-item">
-							<a class="nav-link" href="/#home">Accueil</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/#search">Recherche</a>
-						</li>
-						<li class="nav-item">
-							<a class="nav-link" href="/#about">À Propos</a>
-						</li>
-						<li class="nav-item flex-grow-1">
-							<a class="nav-link text-lg-end" href="/#login">Connexion</a>
-						</li>
-					</ul>
+					<ul id="mainMenu" class="navbar-nav w-100"></ul>
 				</div>
 				<!-- .navbar-collapse -->
 			</div>
@@ -66,9 +52,5 @@
 		<!-- .navbar -->
 
 		<main class="container"></main>
-
-		<script src="node_modules/vanilla-router/dist/vanilla-router.min.js"></script>
-
-		<script type="module" src="app/main.js"></script>
 	</body>
 </html>
